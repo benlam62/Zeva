@@ -45,7 +45,7 @@
     "use_peft": false,
     "push_to_hub": false,
     "repo_id": "local/zeva-ego-robotwin-clean",
-    "pretrained_path": "/path/to/pi05_base_or_ego_mid_trained_checkpoint",
+    "pretrained_path": "lerobot/pi05_base",
     "pretrained_revision": null,
     "paligemma_variant": "gemma_2b",
     "action_expert_variant": "gemma_300m",

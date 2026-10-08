@@ -76,6 +76,11 @@ class RoboTwinCleanWindowDataset(Dataset[dict[str, Any]]):
         self.absolute_to_relative_idx = None
         if meta is not None:
             self.meta = meta
+            if hasattr(self.meta, "episodes") and not self.meta.episodes:
+                self.meta.episodes = {
+                    "dataset_from_index": [0] + self._ends[:-1],
+                    "dataset_to_index": list(self._ends),
+                }
 
     def __len__(self) -> int:
         return self._ends[-1]
