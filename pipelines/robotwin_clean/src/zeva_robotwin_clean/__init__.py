@@ -8,6 +8,7 @@ from zeva_robotwin_clean.episodes import EpisodeDescriptor
 from zeva_robotwin_clean.episodes import RoboTwinCleanWindowDataset
 from zeva_robotwin_clean.evaluation import ROBOTWIN_TASKS
 from zeva_robotwin_clean.evaluation import EvaluationSpec
+from zeva_robotwin_clean.robotwin_factory import make_datasets
 
 __all__ = [
     "ROBOTWIN_TASKS",
@@ -18,4 +19,5 @@ __all__ = [
     "RoboTwinCleanWindowDataset",
     "absolute_to_chunk_start_eef16",
     "align_grippers_to_model_convention",
+    "make_datasets",
 ]
