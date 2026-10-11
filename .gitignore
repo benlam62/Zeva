@@ -11,3 +11,11 @@ pretrained/
 *.distcp
 *.safetensors
 *.mp4
+robotwin-handoff/checkpoint/pretrained_model/config.json
+robotwin-handoff/checkpoint/pretrained_model/policy_postprocessor.json
+robotwin-handoff/checkpoint/pretrained_model/policy_preprocessor.json
+robotwin-handoff/checkpoint/pretrained_model/train_config.json
+robotwin-handoff/checkpoint/pretrained_model/tokenizer/tokenizer_config.json
+robotwin-handoff/checkpoint/pretrained_model/tokenizer/tokenizer.json
+uv.lock
+robotwin-handoff/reference/mean-std-eef16-h50-stage1grip-train95-v2.json
