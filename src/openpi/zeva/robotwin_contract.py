@@ -35,6 +35,11 @@ ROBOTWIN_ACTION_NAMES = (
     "left_gripper",
     "right_gripper",
 )
+ROBOTWIN_ACTION_FEATURE_NAMES = (
+    "left_eef",
+    "right_eef",
+    "grippers",
+)
 ROBOTWIN_STATE_DIM = 14
 ROBOTWIN_ACTION_DIM = 16
 ROBOTWIN_ACTION_HORIZON = 50
@@ -209,12 +214,26 @@ class RobotWinHandoff:
         for key in ROBOTWIN_CAMERA_KEYS:
             if config.get("input_features", {}).get(key, {}).get("shape") != list(ROBOTWIN_IMAGE_SHAPE):
                 raise ValueError(f"RoboTwin PI0.5 camera contract drifted for {key}.")
-        if config.get("normalization_mapping") != {
-            "ACTION": "MEAN_STD",
-            "STATE": "MEAN_STD",
-            "VISUAL": "IDENTITY",
-        }:
-            raise ValueError("RoboTwin PI0.5 processor normalization must remain mean/std + visual identity.")
+        valid_normalization_mappings = (
+            {
+                "ACTION": "MEAN_STD",
+                "STATE": "MEAN_STD",
+                "VISUAL": "IDENTITY",
+            },
+            {
+                "ACTION": "QUANTILES",
+                "STATE": "QUANTILES",
+                "VISUAL": "IDENTITY",
+            },
+        )
+        if config.get("normalization_mapping") not in valid_normalization_mappings:
+            raise ValueError(
+                "RoboTwin PI0.5 processor normalization must remain mean/std or quantiles + visual identity."
+            )
         action_names = tuple(config.get("action_feature_names") or ())
-        if action_names and action_names != ROBOTWIN_ACTION_NAMES:
+        valid_action_names = (
+            ROBOTWIN_ACTION_NAMES,
+            ROBOTWIN_ACTION_FEATURE_NAMES,
+        )
+        if action_names and action_names not in valid_action_names:
             raise ValueError("RoboTwin EEF16 slot order does not match the selected checkpoint.")

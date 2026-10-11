@@ -1,0 +1,17 @@
+{
+  "schema": "egoscale-robotwin-memory-baseline-handoff-v1",
+  "memory_code_included": false,
+  "physical_contract": {
+    "state": "absolute-joint14",
+    "action": "chunk-start-relative-eef16",
+    "action_horizon": 50,
+    "gripper_model_convention": "1=open",
+    "gripper_action_slots": [14, 15],
+    "image_shape": [480, 640, 3],
+    "camera_order": ["cam_high", "cam_left_wrist", "cam_right_wrist"]
+  },
+  "normalization": {
+    "type": "mean-std",
+    "recompute": false
+  }
+}
